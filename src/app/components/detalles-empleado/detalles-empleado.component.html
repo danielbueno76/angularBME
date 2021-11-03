@@ -1,0 +1,29 @@
+Estoy en el formulario de plantilla
+
+<div *ngIf="empleado">
+  <h2>Detalles de {{ empleado.nombre | uppercase }} {{ empleado.apellidos | uppercase }} </h2>
+  <form #empForm="ngForm">
+    <div><label>cif: 
+        <input required pattern="\d{8}[A-Z]" #cif="ngModel" [(ngModel)]="empleado.cif" 
+            placeholder="cif" name="cif"></label></div>
+    <div *ngIf="cif.invalid && (cif.dirty || cif.touched)" class="alert">
+        <div *ngIf="cif.errors.required">
+          El cif es obligatorio.
+        </div>
+        <div *ngIf="cif.errors.pattern">
+          El cif debe estar compuesto de 8 números y una letra mayúscula.
+        </div>
+      </div>
+  
+
+    <div><label>nombre:  
+        <input [(ngModel)]="empleado.nombre" placeholder="nombre" name="nombre"></label></div>
+    <div><label>apellidos:  
+        <input [(ngModel)]="empleado.apellidos" placeholder="apellidos" name="apellidos"></label></div>
+    <div><label>edad:  
+        <input [(ngModel)]="empleado.edad" placeholder="edad" name="edad"></label></div>
+        <button [disabled]="empForm.invalid" (click)="onGuardar()">Guardar</button>
+        <button *ngIf="!creandoEmpleado" (click)="onCancelar()">Cancelar</button>
+        <button (click)="onCerrar()">Cerrar</button><br>
+  </form>
+</div>

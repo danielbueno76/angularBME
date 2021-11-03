@@ -1,0 +1,17 @@
+El estado de este proyecto ahora mismo está así:
+
+- Tenemos dos formularios, uno de plantilla y otro reactivo.
+
+- Los servicios implementan los dos get e inserta
+
+- El servicio rest se lanza con el comando
+
+    npm run mock-server
+
+y escucha del puerto 5555/empleados
+
+- Cuando creamos un nuevo empleado o recuperamos un empleado del servicio
+mock, el modelo en DetalleEmpleado es el mismo que en ListaEmpleado o Dashboard,
+y si usamos el servicio rest, sucede lo mismo al crear un nuevo empleado
+(esto se ve mejor si usamos el formulario de plantilla, al cambiar los datos
+en el formulario se cambian en el otro componente)

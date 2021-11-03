@@ -1,0 +1,28 @@
+Estoy en el formulario reactivo
+
+<div *ngIf="empleado">
+    <h2>Detalles de {{ empleado.nombre | uppercase }} {{ empleado.apellidos | uppercase }} </h2>
+    <form [formGroup]="empForm">
+      <div><label>cif: 
+          <input required pattern="\d{8}[A-Z]" formControlName="cif" 
+              placeholder="cif" name="cif"></label>
+      </div>
+      <div *ngIf="cif.invalid && (cif.dirty || cif.touched)" class="alert">
+        <div *ngIf="cif.errors.required">
+            El cif es obligatorio.
+        </div>
+        <div *ngIf="cif.errors.pattern">
+            El cif debe estar compuesto de 8 números y una letra mayúscula.
+        </div>
+      </div>   
+  
+      <div><label>nombre:  
+          <input formControlName="nombre" placeholder="nombre" name="nombre"></label></div>
+      <div><label>apellidos:  
+          <input formControlName="apellidos" placeholder="apellidos" name="apellidos"></label></div>
+      <div><label>edad:  
+          <input formControlName="edad" placeholder="edad" name="edad"></label></div>
+      <button [disabled]="!creandoEmpleado || empForm.invalid" (click)="onGuardar()">Guardar</button>
+      <button (click)="onCerrar()">Cerrar</button><br>
+    </form>
+  </div>

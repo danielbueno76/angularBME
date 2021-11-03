@@ -1,0 +1,5 @@
+- GET /empleados/: devuelve todos los empleados
+- GET /empleados/x: devuelve el empleado con cif x
+- PUT /empleados/x: modifica un empleado
+- DELETE /empleados/x: elimina el empleado con cif x
+- POST /empleados/: inserta un empleado

@@ -1,0 +1,9 @@
+<div class="grid grid-pad">
+    <a *ngFor="let empleado of empleados" class="col-1-4" routerLink="detalles/{{ empleado.cif }}">
+        <div class="module empleado">
+            <h4>{{ empleado.nombre }}</h4>
+        </div>
+    </a>
+</div>
+
+<router-outlet></router-outlet>
