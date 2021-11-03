@@ -10,7 +10,7 @@ import { Empleado } from '../model/empleado';
 })
 export class EmpleadosDelegateService implements EmpleadosIntService {
 
-  constructor(private empleadosService: EmpleadosRestService) { }
+  constructor(private empleadosService: EmpleadosMockService) { }
   getAllEmpleados(): Observable<Empleado[]> {
     return this.empleadosService.getAllEmpleados();
   }

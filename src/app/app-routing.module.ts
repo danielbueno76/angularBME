@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empleados.component';
+import { LoginComponent } from './security/components/login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/listaEmpleados', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'login', component: LoginComponent },
   { path: 'listaEmpleados', component: ListaEmpleadosComponent,
     children: [
       { path: 'detalles/:cif', component: DetallesEmpleadoComponent },

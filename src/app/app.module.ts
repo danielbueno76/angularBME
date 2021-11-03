@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetallesEmpleadoReactivoComponent } from './components/detalles-empleado-reactivo/detalles-empleado-reactivo.component';
+import { SecurityModule } from './security/security.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DetallesEmpleadoReactivoComponent } from './components/detalles-emplead
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SecurityModule
   ],
   providers: [],
   bootstrap: [AppComponent]

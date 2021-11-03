@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   selector: 'app-lista-empleados',
   templateUrl: './lista-empleados.component.html',
   styleUrls: ['./lista-empleados.component.css'],
-  providers: [EmpleadosMockService]
+  providers: []
 })
 export class ListaEmpleadosComponent implements OnInit {
 
