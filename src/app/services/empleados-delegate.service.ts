@@ -1,7 +1,7 @@
 import { EmpleadosRestService } from './empleados-rest.service';
 import { EmpleadosMockService } from './empleados-mock.service';
-import { EmpleadosIntService } from './empleados-int.service';
-import { Injectable } from '@angular/core';
+import { EmpleadosIntService, EMPLEADOS_SERVICE } from './empleados-int.service';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Empleado } from '../model/empleado';
 
@@ -10,7 +10,7 @@ import { Empleado } from '../model/empleado';
 })
 export class EmpleadosDelegateService implements EmpleadosIntService {
 
-  constructor(private empleadosService: EmpleadosMockService) { }
+  constructor(@Inject(EMPLEADOS_SERVICE) private empleadosService: EmpleadosIntService) { }
   getAllEmpleados(): Observable<Empleado[]> {
     return this.empleadosService.getAllEmpleados();
   }

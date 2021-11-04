@@ -12,7 +12,7 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class EmpleadosRestService implements EmpleadosIntService {
 
-  private EMPLEADOS_SERVICE_URL = environment.empleadosServiceUrl;
+  private EMPLEADOS_SERVICE_URL = environment.common.empleadosServiceUrl;
 
   constructor(private http: HttpClient,
     private errorsService: ErrorsService) { }

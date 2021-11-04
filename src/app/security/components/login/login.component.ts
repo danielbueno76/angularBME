@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.router.navigate(["/listaEmpleados"]);
+    this.router.navigate([environment.common.successLoginRoute]);
   }
 }

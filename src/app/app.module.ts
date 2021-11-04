@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetallesEmpleadoReactivoComponent } from './components/detalles-empleado-reactivo/detalles-empleado-reactivo.component';
 import { SecurityModule } from './security/security.module';
+import { environment } from './../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SecurityModule } from './security/security.module';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SecurityModule
+    SecurityModule,
+    environment.variableServicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
