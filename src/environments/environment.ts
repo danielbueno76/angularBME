@@ -1,3 +1,4 @@
+import { RealModule } from './../app/real.module';
 import { commonEnvironment } from './environment.common';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -5,7 +6,8 @@ import { commonEnvironment } from './environment.common';
 
 export const environment = {
   production: false,
-  common: commonEnvironment
+  common: commonEnvironment,
+  variableServicesModule: RealModule
 };
 
 /*
