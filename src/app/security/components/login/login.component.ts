@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/model/user';
+import { MensajesService } from 'src/app/services/mensajes.service';
 import { environment } from '../../../../environments/environment';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +12,59 @@ import { environment } from '../../../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  private user: User = new User();
 
-  ngOnInit() {
+  private returnUrl: string;
+
+
+
+  constructor(
+
+      private router: Router,
+
+      private route: ActivatedRoute,
+
+      private authenticationService: AuthenticationService,
+
+      private mensajesService: MensajesService
+
+  ) {
+
+    if (this.authenticationService.isUserAuthenticated()) {
+
+      this.router.navigate([environment.common.successLoginRoute]);
+
+    }
+
   }
 
+
+
+  ngOnInit() {
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] 
+
+        || environment.common.successLoginRoute;
+
+  }
+
+
+
   onLogin() {
-    this.router.navigate([environment.common.successLoginRoute]);
+
+    this.authenticationService.login(this.user.username, this.user.password).subscribe(
+
+      user => this.router.navigate([this.returnUrl]),
+
+      error => {
+
+        this.mensajesService.addMensaje('Error de autenticación');
+
+        console.log(error)
+
+      }
+
+    );
+
   }
 }
