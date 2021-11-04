@@ -4,7 +4,7 @@ Estoy en el formulario reactivo
     <h2>Detalles de {{ empleado.nombre | uppercase }} {{ empleado.apellidos | uppercase }} </h2>
     <form [formGroup]="empForm">
       <div><label>cif: 
-          <input required pattern="\d{8}[A-Z]" formControlName="cif" 
+          <input [disabled]="!creandoEmpleado" required pattern="\d*[A-Z]" formControlName="cif" 
               placeholder="cif" name="cif"></label>
       </div>
       <div *ngIf="cif.invalid && (cif.dirty || cif.touched)" class="alert">
@@ -22,7 +22,8 @@ Estoy en el formulario reactivo
           <input formControlName="apellidos" placeholder="apellidos" name="apellidos"></label></div>
       <div><label>edad:  
           <input formControlName="edad" placeholder="edad" name="edad"></label></div>
-      <button [disabled]="!creandoEmpleado || empForm.invalid" (click)="onGuardar()">Guardar</button>
-      <button (click)="onCerrar()">Cerrar</button><br>
+          <button [disabled]="empForm.invalid" (click)="onGuardar()">Guardar</button>
+          <button *ngIf="!creandoEmpleado" (click)="onCancelar()">Cancelar</button>
+          <button (click)="onCerrar()">Cerrar</button><br>
     </form>
   </div>

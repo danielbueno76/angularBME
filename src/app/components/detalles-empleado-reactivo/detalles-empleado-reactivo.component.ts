@@ -5,7 +5,7 @@ import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../model/empleado';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-detalles-empleado-reactivo',
@@ -32,6 +32,7 @@ export class DetallesEmpleadoReactivoComponent implements OnInit {
   /* Creación del FormGroup*/
   private createFormGroup(): FormGroup {
     return this.formBuilder.group(new Empleado());
+
   }
 
   ngOnInit() {
@@ -67,6 +68,10 @@ export class DetallesEmpleadoReactivoComponent implements OnInit {
   private updateFormFromModel() {
     const form = this.empForm;
     form.setValue(this.empleado);
+  }
+
+  onCancelar() {
+    this.updateFormFromModel();
   }
 
   private getEmpleadoFromService() {
