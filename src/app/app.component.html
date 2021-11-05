@@ -4,7 +4,7 @@
     Bienvenidos a la app de {{ title }}!
   </h1>
 </div>
-<nav *ngIf="authService.isUserAuthenticated()">
+<nav *ngIf="isUserAuthenticated">
   <a routerLink="/listaEmpleados">Empleados</a>
   <a routerLink="/dashboard">Dashboard</a>
 </nav>

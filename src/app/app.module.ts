@@ -1,5 +1,7 @@
 import { JwtInterceptor } from './security/helpers/jwt.interceptor';
 import { fakeBackendProvider } from './security/helpers/fake-backend.interceptor';
+import { EmpleadosMockService } from './services/empleados-mock.service';
+import { SecurityModule } from './security/security.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,8 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DetallesEmpleadoReactivoComponent } from './components/detalles-empleado-reactivo/detalles-empleado-reactivo.component';
-import { SecurityModule } from './security/security.module';
 import { environment } from './../environments/environment';
+import { AuthConfigModule } from './auth-config.module';
 
 @NgModule({
   declarations: [
@@ -31,10 +33,13 @@ import { environment } from './../environments/environment';
     HttpClientModule,
     ReactiveFormsModule,
     SecurityModule,
-    environment.variableServicesModule
+    environment.variableServicesModule,
+    AuthConfigModule
   ],
-  providers: [fakeBackendProvider,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  providers: [
+    fakeBackendProvider,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

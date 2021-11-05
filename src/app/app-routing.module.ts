@@ -8,7 +8,7 @@ import { DetallesEmpleadoReactivoComponent } from './components/detalles-emplead
 import { AuthGuard } from './security/helpers/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: '', redirectTo: '/listaEmpleados', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'listaEmpleados', component: ListaEmpleadosComponent, canActivate: [AuthGuard],
     children: [

@@ -1,6 +1,7 @@
 import { EmpleadosMockService } from './services/empleados-mock.service';
 import { Component } from '@angular/core';
 import { AuthenticationService } from './security/services/authentication.service';
+import { OAuth2Service } from './security/services/o-auth2.service';
 
 @Component({
   selector: 'app-root',
