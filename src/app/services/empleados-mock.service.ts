@@ -1,11 +1,11 @@
+import { EmpleadosErrorType } from './../model/errors';
 import { ErrorsService } from './errors.service';
 import { MensajesService } from './mensajes.service';
 import { EmpleadosIntService } from './empleados-int.service';
 import { Injectable } from '@angular/core';
 import { Empleado } from '../model/empleado';
-import { Observable, of, throwError } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { EmpleadosErrorType } from '../model/errors';
+import { from, Observable, of, throwError } from 'rxjs';
+import { concatMap, delay } from 'rxjs/operators';
 
 
 @Injectable({
@@ -26,14 +26,22 @@ export class EmpleadosMockService implements EmpleadosIntService {
   ];
 
  
-  constructor(private mensajesService: MensajesService, private errorsService: ErrorsService) { 
+  constructor(
+    private mensajesService: MensajesService,
+    private errorsService: ErrorsService
+  ) { }
+
+  getAllEmpleadosReactivo(): Observable<Empleado> {
+    return from(this.empleados).pipe(
+      concatMap( item => of(item).pipe ( delay( 1000 ) )));
   }
 
   insertaEmpleado(empleadoAInsertar: Empleado): Observable<Empleado> {
+    //this.empleados.push(empleado);
     if (this.empleados.some(empleado => empleado.cif == empleadoAInsertar.cif)) {
       return this.errorsService.throwError(EmpleadosErrorType.DUPLICATED, empleadoAInsertar);
     } else {
-      let miEmpObservable = of(empleadoAInsertar);
+      let miEmpObservable = of(Object.assign(new Empleado(), empleadoAInsertar));
       return miEmpObservable;
     }
   }

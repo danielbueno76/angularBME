@@ -11,8 +11,13 @@ import { Empleado } from '../model/empleado';
 export class EmpleadosDelegateService implements EmpleadosIntService {
 
   constructor(@Inject(EMPLEADOS_SERVICE) private empleadosService: EmpleadosIntService) { }
+
   getAllEmpleados(): Observable<Empleado[]> {
     return this.empleadosService.getAllEmpleados();
+  }
+
+  getAllEmpleadosReactivo(): Observable<Empleado> {
+    return this.empleadosService.getAllEmpleadosReactivo();
   }
 
   insertaEmpleado(empleado: Empleado): Observable<Empleado> {

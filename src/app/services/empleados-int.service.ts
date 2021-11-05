@@ -1,10 +1,12 @@
 import { Empleado } from './../model/empleado';
 import { Observable } from 'rxjs';
 
-export const EMPLEADOS_SERVICE="EMPLEADOS_SERVICE"
+export const EMPLEADOS_SERVICE = 'EMPLEADOS_SERVICE';
 export interface EmpleadosIntService {
 
     getAllEmpleados(): Observable<Empleado[]>;
+
+    getAllEmpleadosReactivo(): Observable<Empleado>;
 
     insertaEmpleado(empleado: Empleado): Observable<Empleado>;
 

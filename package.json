@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "mock-server": "java -jar mock_service/empleados-mock-allow-cors-0.1.jar"
+    "mock-server": "java -jar mock_service/empleados-mock-allow-cors-0.2.jar"
   },
   "private": true,
   "dependencies": {

@@ -5,7 +5,7 @@ import { IntercambioEmpleadosService } from './../../services/intercambio-emplea
 import { MensajesService } from './../../services/mensajes.service';
 import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../model/empleado';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -26,7 +26,9 @@ export class ListaEmpleadosComponent implements OnInit {
     private router: Router,
     private intercambioEmpleadosService: IntercambioEmpleadosService,
     private route: ActivatedRoute,
-    private errorsService: ErrorsService
+    private errorsService: ErrorsService,
+    private cdr: ChangeDetectorRef,
+    private zone: NgZone
   ) { }
 
   ngOnInit() {
@@ -36,14 +38,11 @@ export class ListaEmpleadosComponent implements OnInit {
   }
 
   private getEmpleadosFromService() {
-    this.empleadosService.getAllEmpleados().subscribe(
-      empleados => {
-        this.empleados = empleados;
-        const firstChild = this.route.snapshot.firstChild;
-        if (firstChild) {
-          const cif = firstChild.paramMap.get('cif');
-          this.empleadoSeleccionado = this.empleados.find(empleado => empleado.cif === cif);
-        }
+    this.empleados = [];
+    this.empleadosService.getAllEmpleadosReactivo().subscribe(
+      empleado => {
+        this.empleados.push(empleado);
+        this.cdr.detectChanges();
       }
     );
   }
@@ -55,8 +54,9 @@ export class ListaEmpleadosComponent implements OnInit {
   onSeleccionaEmpleado(empleado: Empleado) {
     this.mensajesService.addMensaje('Empleado con cif ' + empleado.cif + ' seleccionado');
     this.empleadoSeleccionado = empleado;
-    this.router.navigate(['/listaEmpleados/detalles/' + empleado.cif]);
- //   this.intercambioEmpleadosService.emiteEmpleadoSeleccionado(empleado);
+    this.zone.run(() => {
+      this.router.navigate(['/listaEmpleados/detalles/' + empleado.cif]);
+    });
   }
 
   onNuevoEmpleado() {
