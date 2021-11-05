@@ -1,6 +1,4 @@
-import { EmpleadosMockService } from './services/empleados-mock.service';
 import { Component } from '@angular/core';
-import { AuthenticationService } from './security/services/authentication.service';
 import { OAuth2Service } from './security/services/o-auth2.service';
 
 @Component({
@@ -9,7 +7,16 @@ import { OAuth2Service } from './security/services/o-auth2.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'empleados';
+  title = 'halloween';
+  private isUserAuthenticated = false;
 
-  constructor(private authService: AuthenticationService){}
+  constructor(private oAuthService: OAuth2Service) {}
+
+  ngOnInit() {
+    this.oAuthService.checkAuth().subscribe((auth) => this.isUserAuthenticated = auth);
+  }
+
+  logout() {
+    this.oAuthService.logout();
+  }
 }
